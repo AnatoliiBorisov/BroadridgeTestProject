@@ -1,0 +1,220 @@
+﻿@{
+    ViewBag.Title = "Task Operator";
+}
+
+<br/>
+<br/>
+<br />
+
+<div id="bodyContainer" ng-app="BroadridgeApp">       
+    <div class="row" ng-controller="BroadridgeCtrl" ng-init="Init()">
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-class="{ active: isSet(1) }">
+                    <a href ng-click="setTab(1)">Task List</a>
+                </li>
+                <li ng-class="{ active: isSet(2) }">
+                    <a href ng-click="setTab(2)">Add Task</a>
+                </li>
+                <li ng-class="{ active: isSet(3) }">
+                    <a href ng-click="setTab(3)">Settings</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <div class="jumbotron">
+                <div ng-show="isSet(1)">
+                    <h1>Task List</h1>
+
+                    <table>
+                        <tr>
+                            <td><button class="btn btn-info btn-lg next option" ng-click="getTaskList('All')" ng-disabled="working">All</button></td>
+                            <td><button class="btn btn-info btn-lg next option" ng-click="getTaskList('Active')" ng-disabled="working">Active</button></td>
+                            <td><button class="btn btn-info btn-lg next option" ng-click="getTaskList('Completed')" ng-disabled="working">Completed</button></td>
+                        </tr>
+                    </table>
+
+                    <br/>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="table-container">
+                                    <table st-table="rowCollection" class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th st-sort="Name">Name</th>
+                                            <th st-sort="Priority">Priority</th>
+                                            <th st-sort="TimeCreate">Added</th>
+                                            <th st-sort="TimeToComplete">Time to complete</th>
+                                            <th st-sort="balance">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="row in taskList"
+                                            ng-click="taskListSelectRow(row)"
+                                            st-select-row="row"
+                                            st-select-mode="multiple"
+                                            ng-class-odd="'odd'" 
+                                            ng-class-even="'even'">
+                                            <td>{{row.Name}}</td>
+                                            <td>{{row.Priority}}</td>
+                                            <td>{{row.TimeCreate}}</td>
+                                            <td>{{row.TimeToComplete}}</td>
+                                            <td>
+                                                <button type="button" ng-click="taskListSelectClick(row)" class="btn btn-sm btn-danger">{{row.buttonCaption}}</button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>Name:</td>
+                                        <td>{{selectedTask.Name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description:</td>
+                                        <td>{{selectedTask.Description}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status:</td>
+                                        <td>{{selectedTask.Status}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Priority:</td>
+                                        <td>{{selectedTask.Priority}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Added:</td>
+                                        <td>{{selectedTask.TimeCreate}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div ng-show="isSet(2)">
+                    <h1>Add Task</h1>
+                    <table>
+                        <tr>
+                            <td>
+                                @Html.Label("Name:")
+                            </td>
+                            <td>
+                                <input type="text"
+                                       ng-model="taskUpdated.Name"
+                                       ng-disabled="working">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.Label("Description:")
+                            </td>
+                            <td>
+                                <input type="text"
+                                       ng-model="taskUpdated.Description"
+                                       ng-disabled="working">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.Label("Priority:")
+                            </td>
+                            <td>
+                                <select ng-model="taskUpdated.Priority"
+                                        ng-options="x.Priority as (x.Name) for x in priorities"
+                                        ng-disabled="working">
+                                    <option></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.Label("Time to complete:")
+                            </td>
+                            <td>                                
+                                <md-datepicker ng-model="taskUpdated.TimeToComplete" md-placeholder="Enter date"></md-datepicker>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+
+                            <td align="right">
+                                <button class="btn btn-info btn-lg next option" ng-click="SaveTask()" ng-disabled="working">Save Task</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div ng-show="isSet(3)">
+                    <h1>Settings</h1>
+                    <table>
+                        <tr>
+                            <td>
+                                @Html.Label("Date/time format:")
+                            </td>
+                            <td>
+                                <input type="text"
+                                       ng-model="settings.DateTimeFormat"
+                                       ng-disabled="working">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.Label("Сolor of alt rows in the grid:")
+                            </td>
+                            <td>
+                                <select id="selectAltRowsColor"
+                                        ng-model="settings.AltRowsColor"
+                                        ng-options="x.Color as (x.Name) for x in colorNames"
+                                        ng-disabled="working">
+                                    <option></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+
+                            <td align="right">
+                                <button class="btn btn-info btn-lg next option" ng-click="SaveSetting()" ng-disabled="working">Save settings</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @*@Scripts.Render("~/Scripts/angular.js")*@
+    
+    <script src="~/Scripts/angular/angular.js"></script>
+    <script src="~/Scripts/angular-animate/angular-animate.js"></script>
+    <script src="~/Scripts/angular-aria/angular-aria.js"></script>
+    <script src="~/Scripts/angular-material/angular-material.js"></script>
+
+    @*<script src="~/Scripts/angular-route.js"></script>*@
+
+    <script src="~/Scripts/moment.min.js"></script>
+
+    <script src="~/Scripts/smart-table.js"></script>
+
+    <link href="~/Content/angular-material.css" rel="stylesheet" />
+
+    <script src="~/Scripts/angular-ui/ui-bootstrap.js"></script>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    
+    @*@Scripts.Render("~/Scripts/bootstrap.js")
+    @Scripts.Render("~/Scripts/bootstrap-datepicker.js")
+
+    <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datepicker3.css" rel="stylesheet" />*@
+
+    @Scripts.Render("~/Scripts/app/task-controller.js")
+}

@@ -1,0 +1,72 @@
+﻿<h1>Task List</h1>
+
+<div class="btn-group">
+    <button id="btnTasksAll" class="btn btn-info btn-lg" ng-click="getTaskList('All')" ng-disabled="loading"><span class="glyphicon glyphicon-book"/>&nbsp;&nbsp;All</button>
+    <button id="btnTasksActive" class="btn btn-info btn-lg" ng-click="getTaskList('Active')" ng-disabled="loading"><span class="glyphicon glyphicon-time" />&nbsp;&nbsp;Active</button>
+    <button id="btnTasksCompleted" class="btn btn-info btn-lg" ng-click="getTaskList('Completed')" ng-disabled="loading"><span class="glyphicon glyphicon-ok-circle" />&nbsp;&nbsp;Completed</button>
+</div>
+
+<br />
+<table>
+    <tr>
+        <td>
+            <div class="table-container">
+                <table st-table="rowCollection" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th st-sort="Name">Name</th>
+                        <th st-sort="Priority">Priority</th>
+                        <th st-sort="TimeCreate">Added</th>
+                        <th st-sort="TimeToComplete">Time to complete</th>
+                        <th st-sort="balance">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in taskList"
+                        ng-click="taskListSelectRow(row)"
+                        ng-dblclick="editTask(row)"
+                        st-select-row="row"
+                        st-select-mode="multiple"
+                        ng-class-odd="'odd'"
+                        ng-class-even="'even'">
+                        <td>{{row.Name}}</td>
+                        <td>{{row.Priority}}</td>
+                        <td>{{row.TimeCreate}}</td>
+                        <td>{{row.TimeToComplete}}</td>
+                        <td>
+                            <button type="button" ng-click="taskListSelectClick(row)" class="btn btn-sm btn-danger">{{row.buttonCaption}}</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></ul>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td>{{selectedTask.Name}}</td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>{{selectedTask.Description}}</td>
+                </tr>
+                <tr>
+                    <td>Status:</td>
+                    <td>{{selectedTask.Status}}</td>
+                </tr>
+                <tr>
+                    <td>Priority:</td>
+                    <td>{{selectedTask.Priority}}</td>
+                </tr>
+                <tr>
+                    <td>Added:</td>
+                    <td>{{selectedTask.TimeCreate}}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

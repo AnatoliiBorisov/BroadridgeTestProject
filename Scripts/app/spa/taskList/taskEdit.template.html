@@ -1,0 +1,47 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">&times;</button>
+        <h4 id="modal-title" class="modal-title">Редактирование задачи</h4>
+    </div>
+    <div class="modal-body">
+        <!--Window Content-->
+        <table>
+            <tr>
+                <td>
+                    <label>Name:</label>
+                </td>
+                <td>
+                    <input type="text"
+                           ng-model="task.Name"
+                           ng-disabled="loading">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Description:</label>
+                </td>
+                <td>
+                    <input type="text"
+                           ng-model="task.Description"
+                           ng-disabled="loading">
+                </td>
+            <tr>
+                <td>
+                    <label>Priority:</label>
+                </td>
+                <td>
+                    <select ng-model="task.Priority"
+                            ng-options="x.Name as (x.Name) for x in priorities"
+                            ng-disabled="loading">
+                        <option></option>
+                    </select>
+                </td>
+            </tr>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="ok()">Ok</button>
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

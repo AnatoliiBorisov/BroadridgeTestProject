@@ -1,0 +1,104 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.validation-summary-valid {
+     display: none;
+}
+
+/* Geek Quiz styles */
+.flip-container .back,
+.flip-container .front {
+     border: 5px solid #00bcf2;
+     padding-bottom: 30px;
+     padding-top: 30px;
+}
+
+#content {
+    position:relative;
+    background:#fff;
+    padding:50px 0 0 0;
+}
+
+.option {
+     width:140px;
+     margin: 5px;
+}
+
+div.correct p {
+     color: green;
+}
+
+div.incorrect p {
+     color: red;
+}
+
+.btn {
+     border-radius: 0;
+}
+
+.flip-container div.front, .flip-container div.back.flip {
+    display: block;
+}
+
+.flip-container div.front.flip, .flip-container div.back {
+    display: none;
+}
+
+/*------------------------------------------------*/
+body {
+  margin: 15px;
+}
+
+/* text recolor */
+h1, p, a {
+  color: #4DC9C9 !important;
+}
+
+/* button recolor */
+.nav-pills > li.active > a, .btn-primary {
+  background-color: #6C6C6C !important;
+  // feeling like it's a rounded corners kind of day
+  border-color: #6C6C6C !important;
+  border-radius: 25px; 
+}
+
+
+/*------------------------------------------------*/
+.table-container {
+    height: 500px;
+    width: 100%;
+    overflow-y: scroll;
+    white-space: nowrap;
+    font-size: small;
+    align-items: stretch;
+}
+
+.odd {  
+  background-color: #FF0000;  
+  }  
+
+.even {  
+background-color: #f1f1f1;  
+}

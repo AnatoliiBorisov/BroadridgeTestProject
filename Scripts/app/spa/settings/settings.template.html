@@ -1,0 +1,33 @@
+﻿<h1>Settings</h1>
+<table>
+    <tr>
+        <td>
+            <label>Date/time format:</label>
+        </td>
+        <td>
+            <input type="text"
+                   ng-model="settings.DateTimeFormat"
+                   ng-disabled="loading">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Сolor of alt rows in the grid:</label>            
+        </td>
+        <td>
+            <select id="selectAltRowsColor"
+                    ng-model="settings.AltRowsColor"
+                    ng-options="x.Color as (x.Name) for x in colorNames"
+                    ng-disabled="loading">
+                <option></option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+
+        <td align="right">
+            <button class="btn btn-info btn-lg next option" ng-click="SaveSetting()" ng-disabled="loading">Save settings</button>
+        </td>
+    </tr>
+</table>
