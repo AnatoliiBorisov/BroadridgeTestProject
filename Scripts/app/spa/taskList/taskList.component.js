@@ -1,7 +1,4 @@
-﻿/// <reference path="../../../angular-ui/uib/template/modal/window.html" />
-/// <reference path="../../../angular-ui/uib/template/modal/window.html" />
-/// <reference path="../../../angular-ui/uib/template/modal/window.html" />
-angular.
+﻿angular.
     module('taskListModule', ['ui.bootstrap']).
     component('taskList', {
         templateUrl: '/BroadridgeTestProject/Scripts/app/spa/taskList/taskList.template.html',
@@ -88,6 +85,19 @@ function taskListController($http, $scope, $window, $timeout, priorityService, s
     $scope.getTaskList = function (taskListType) {
         $scope.selectedTaskListType = taskListType;
 
+        //set all tasks buttons unactivated. start
+        var buttonsUnactivatedClassName = "btn btn-info btn-lg";
+        var buttonsActivatClassName = "btn btn-info btn-lg active";
+
+        var btnTasksAll = angular.element(document.querySelector('#btnTasksAll'))[0];
+        var btnTasksActive = angular.element(document.querySelector('#btnTasksActive'))[0];
+        var btnTasksCompleted = angular.element(document.querySelector('#btnTasksCompleted'))[0];
+
+        btnTasksAll.className = buttonsUnactivatedClassName;
+        btnTasksActive.className = buttonsUnactivatedClassName;
+        btnTasksCompleted.className = buttonsUnactivatedClassName;
+        //set all tasks buttons unactivated. stop
+
         $http({
             method: 'GET',
             url: '/BroadridgeTestProject/api/task/get',
@@ -113,6 +123,18 @@ function taskListController($http, $scope, $window, $timeout, priorityService, s
             }
 
             $scope.taskList = taskList;
+
+            switch($scope.selectedTaskListType) {
+                case "All":
+                    btnTasksAll.className = buttonsActivatClassName;
+                    break;
+                case "Active":
+                    btnTasksActive.className = buttonsActivatClassName;
+                    break;
+                case "Completed":
+                    btnTasksCompleted.className = buttonsActivatClassName;
+                    break;
+            }
         }, function (error) {
             $scope.title = "Oops... something went wrong";
         });
