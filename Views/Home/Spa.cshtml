@@ -18,6 +18,9 @@
                 <li ng-class="{ active: isSet(3) }">
                     <a href ng-click="setTab(3)">Settings</a>
                 </li>
+                <li ng-class="{ active: isSet(4) }">
+                    <a href ng-click="setTab(4)">Task Chart</a>
+                </li>
             </ul>
         </div>
 
@@ -30,7 +33,10 @@
                     <task/>
                 </div>
                 <div ng-show="isSet(3)">
-                    <settings></settings>
+                    <settings/>
+                </div>
+                <div ng-show="isSet(4)">
+                    <task-chart />
                 </div>
             </div>
         </div>
@@ -69,6 +75,9 @@
 
     @Scripts.Render("~/Scripts/app/spa/taskList/taskList.module.js")
     @Scripts.Render("~/Scripts/app/spa/taskList/taskList.component.js")
+
+    @Scripts.Render("~/Scripts/app/spa/taskChart/taskChart.module.js")
+    @Scripts.Render("~/Scripts/app/spa/taskChart/taskChart.component.js")
 
     @Scripts.Render("~/Scripts/app/spa/spa-controller.js")
 

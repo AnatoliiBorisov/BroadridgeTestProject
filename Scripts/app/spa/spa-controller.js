@@ -1,4 +1,4 @@
-﻿angular.module('TaskSpaApp', ['ngAria', 'ngAnimate', 'ngMaterial', 'ui.bootstrap', 'settingsModule', 'taskModule', 'taskListModule'])
+﻿angular.module('TaskSpaApp', ['ngAria', 'ngAnimate', 'ngMaterial', 'ui.bootstrap', 'settingsModule', 'taskModule', 'taskListModule', 'taskChartModule'])
 .controller('TaskSpaController', ['$scope', function ($scope) {
     $scope.tab = 1;
 
