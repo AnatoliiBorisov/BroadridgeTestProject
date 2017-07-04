@@ -69,4 +69,3 @@ E:\TestProjects\Broadridge\BroadridgeTestProject\BroadridgeTestProject\bin\Syste
 E:\TestProjects\Broadridge\BroadridgeTestProject\BroadridgeTestProject\bin\System.Web.Http.WebHost.xml
 E:\TestProjects\Broadridge\BroadridgeTestProject\BroadridgeTestProject\obj\Debug\BroadridgeTestProject.dll
 E:\TestProjects\Broadridge\BroadridgeTestProject\BroadridgeTestProject\obj\Debug\BroadridgeTestProject.pdb
-E:\TestProjects\Broadridge\BroadridgeTestProject\BroadridgeTestProject\obj\Debug\BroadridgeTestProject.csprojResolveAssemblyReference.cache
