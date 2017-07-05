@@ -94,7 +94,10 @@ function taskChartController($http, $scope) {
 		var options = {
 		title: 'Sales by Region',
 		seriesDefaults: {
-			renderer: jQuery.jqplot.PieRenderer
+			renderer: jQuery.jqplot.PieRenderer,
+            rendererOptions: {
+              showDataLabels: true
+            }
 		},
 		legend: { show:true, location: 'e' }
 		};
