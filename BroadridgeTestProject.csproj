@@ -195,10 +195,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PriorityController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Controllers\TaskChartController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="DAL\BroadridgeContext.cs" />
     <Compile Include="DAL\BroadridgeInitializer.cs" />
     <Compile Include="Dto\SettingDto.cs" />
+    <Compile Include="Dto\TaskChartDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\TaskListSettigs.cs" />
     <Compile Include="Global.asax.cs">

@@ -76,6 +76,11 @@ namespace BroadridgeTestProject.Services
             };
         }
 
+        public IEnumerable<TaskChartDto> GetCountTasksByPriority()
+        {
+            return _taskProvider.GetCountTasksByPriority();
+        }
+
 
         //TODO: need to use automapper
         internal TaskDto ConvertToDto(Task task)

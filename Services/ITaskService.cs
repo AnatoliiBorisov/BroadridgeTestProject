@@ -19,5 +19,7 @@ namespace BroadridgeTestProject.Services
         IList<TaskDto> GetUpdates(IEnumerable<int> taskIds);
 
         TaskListSettigs GetTaskListSettigs();
+
+        IEnumerable<TaskChartDto> GetCountTasksByPriority();
     }
 }

@@ -43,7 +43,7 @@ namespace BroadridgeTestProject
             container.RegisterType<SettingController>();
             container.RegisterType<ColorNameController>();
             container.RegisterType<PriorityController>();
-
+            container.RegisterType<TaskChartController>();
 
             container.RegisterType<TaskController>();            
 

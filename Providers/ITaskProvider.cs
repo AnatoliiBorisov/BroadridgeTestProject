@@ -20,5 +20,7 @@ namespace BroadridgeTestProject.Providers
         IList<Task> GetTaskList(IEnumerable<int> taskListType);
 
         int GetTaskCount();
+
+        IEnumerable<TaskChartDto> GetCountTasksByPriority();
     }
 }

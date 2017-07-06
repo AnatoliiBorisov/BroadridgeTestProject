@@ -72,6 +72,21 @@ namespace BroadridgeTestProject.Providers
             }
         }
 
+        public IEnumerable<TaskChartDto> GetCountTasksByPriority()
+        {
+            using (var context = new BroadridgeContext())
+            {
+                return context.Tasks.GroupBy(x => x.Priority)
+                                    .Select(x => new TaskChartDto
+                                    {
+                                        Priority = x.Key,
+                                        PriorityName = x.Key.ToString(),
+                                        Count = x.Count()
+                                    })
+                                    .ToList();
+            }
+        }
+
         public void CompleteTask(int taskId)
         {
             using (var context = new BroadridgeContext())
