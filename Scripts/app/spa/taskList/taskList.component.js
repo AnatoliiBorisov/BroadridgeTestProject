@@ -1,34 +1,8 @@
 ﻿angular.
-    module('taskListModule', ['ui.bootstrap']).
+    module('taskListModule', ['ui.bootstrap', 'shared.services']).
     component('taskList', {
         templateUrl: '/BroadridgeTestProject/Scripts/app/spa/taskList/taskList.template.html',
         controller: taskListController
-    })
-    .service('priorityService', function($http) {
-        this.getPriorities = function() {
-            var promise = $http({
-                method: 'GET',
-                url: '/BroadridgeTestProject/api/priority'
-            }).then(function(response) {
-                return response.data;
-            }, function(error) {
-                return error;
-            });
-            return promise;
-        }
-    })
-    .service('settingService', function ($http) {
-        this.getSettings = function () {
-            var promise = $http({
-                method: 'GET',
-                url: '/BroadridgeTestProject/api/setting'
-            }).then(function (response) {
-                return  response.data;                
-            }, function (error) {
-                return error;
-            });
-            return promise;
-        }
     });
 
 function taskListController($http, $scope, $window, $timeout, priorityService, settingService, $uibModal) {

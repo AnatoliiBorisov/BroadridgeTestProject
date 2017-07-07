@@ -72,12 +72,15 @@
     @Scripts.Render("~/Scripts/jquery.jqplot/plugins/jqplot.enhancedLegendRenderer.js")
     <link href="~/Scripts/jquery.jqplot/jquery.jqplot.css" rel="stylesheet"/>
 
-    <!--Neet to del-->
     @Scripts.Render("~/Scripts/angular-ui/ui-chart.js")
 
 
+    <!--Shred services-->
+    @Scripts.Render("~/Scripts/app/spa/services/shared-services.module.js")
     @Scripts.Render("~/Scripts/app/spa/services/priority-service.js")
+    @Scripts.Render("~/Scripts/app/spa/services/setting-service.js")
 
+    <!--Modules-->
     @Scripts.Render("~/Scripts/app/spa/settings/settings.module.js")
     @Scripts.Render("~/Scripts/app/spa/settings/settings.component.js")
 

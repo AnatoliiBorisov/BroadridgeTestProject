@@ -279,6 +279,8 @@
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\angular\angular.min.js" />
     <Content Include="Scripts\app\spa\services\priority-service.js" />
+    <Content Include="Scripts\app\spa\services\setting-service.js" />
+    <Content Include="Scripts\app\spa\services\shared-services.module.js" />
     <Content Include="Scripts\app\spa\settings\settings.component.js" />
     <Content Include="Scripts\app\spa\settings\settings.module.js" />
     <Content Include="Scripts\app\spa\settings\settings.template.html" />

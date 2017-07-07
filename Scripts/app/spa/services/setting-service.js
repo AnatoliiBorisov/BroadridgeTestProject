@@ -1,10 +1,10 @@
-﻿angular.
-    module('shared.services').
-    service('priorityService', function($http) {
-        this.getPriorities = function() {
+﻿angular
+    .module('shared.services')
+    .service('settingService', function($http) {
+        this.getSettings = function() {
             var promise = $http({
                 method: 'GET',
-                url: '/BroadridgeTestProject/api/priority'
+                url: '/BroadridgeTestProject/api/setting'
             }).then(function(response) {
                 return response.data;
             }, function(error) {
