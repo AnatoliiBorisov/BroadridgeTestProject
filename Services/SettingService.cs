@@ -51,7 +51,8 @@ namespace BroadridgeTestProject.Services
                 {
                     AltRowsColor = altRowsColor,
                     AltRowsColorName = altRowsColor.ToString(),
-                    DateTimeFormat = dateTimeFormat
+                    DateTimeFormat = dateTimeFormat,
+                    DateFormat = "DD-MM-YYYY" //TODO: need to calclulate from DateTimeFormat
                 };
 
                 _applicationCasheService.AddValue(ApplicationCasheNames.SettingDto, settingDto);

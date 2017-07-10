@@ -1,11 +1,25 @@
-﻿angular.
-    module('taskModule').
-    component('task', {
+﻿angular
+    .module('taskModule')
+    .component('task', {
         templateUrl: '/BroadridgeTestProject/Scripts/app/spa/task/task.template.html',
-        controller: taskController});
+        controller: taskController})        
+    .config(function($mdDateLocaleProvider) {
+                $mdDateLocaleProvider.formatDate = GetDateFormat;
+            });
 
-function taskController($http, $scope, $window) {
-    $scope.loading = true;
+var dateFormat = "YYYY-MM-DD";
+
+function GetDateFormat(date) {
+    return moment(date).format(dateFormat);
+}
+
+function taskController($http, $scope, $window, settingService) {
+    $scope.loading = true;    
+
+    settingService.getSettings().then(function (data) {
+        dateFormat = data.DateFormat;
+        //$scope.taskUpdated.TimeToComplete = Date.now();
+    });
 
     $http({
         method: 'GET',

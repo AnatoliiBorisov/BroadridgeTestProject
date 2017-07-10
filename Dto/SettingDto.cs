@@ -6,6 +6,8 @@ namespace BroadridgeTestProject.Dto
     {
         public string DateTimeFormat { get; set; }
 
+        public string DateFormat { get; set; }
+
         public Color AltRowsColor { get; set; }
 
         public string AltRowsColorName { get; set; }

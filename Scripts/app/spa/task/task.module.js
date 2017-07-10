@@ -1,1 +1,1 @@
-﻿angular.module('taskModule', []);
+﻿angular.module('taskModule', ['shared.services']);
