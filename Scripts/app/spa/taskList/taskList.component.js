@@ -47,9 +47,11 @@ function taskListController($http, $scope, $window, $timeout, priorityService, s
         $scope.loading = !($scope.isPrioritiesLoaded && $scope.isSettingsLoaded);
     });    
 
-    $scope.settings = [];
+    $scope.settings = {};
+    $scope.AltRowsColor = "gray";
     settingService.getSettings().then(function (data) {
         $scope.settings = data;
+        $scope.AltRowsColor = data.AltRowsColorName;
         $scope.isSettingsLoaded = true;
         $scope.loading = !($scope.isPrioritiesLoaded && $scope.isSettingsLoaded);
     });

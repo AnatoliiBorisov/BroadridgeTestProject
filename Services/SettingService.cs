@@ -30,6 +30,7 @@ namespace BroadridgeTestProject.Services
             _serializationService = serializationService;
         }
 
+        //TODO: need to get settings by user
         public SettingDto GetSettingDto()
         {
             var settingDto = _applicationCasheService.GetValue(ApplicationCasheNames.SettingDto);
@@ -49,6 +50,7 @@ namespace BroadridgeTestProject.Services
                 settingDto = new SettingDto
                 {
                     AltRowsColor = altRowsColor,
+                    AltRowsColorName = altRowsColor.ToString(),
                     DateTimeFormat = dateTimeFormat
                 };
 
@@ -58,6 +60,7 @@ namespace BroadridgeTestProject.Services
             return (SettingDto) settingDto;
         }
 
+        //TODO: need to save settings by user
         public void SaveSettingDto(SettingDto settingDto)
         {
             if (settingDto == null)
@@ -86,6 +89,8 @@ namespace BroadridgeTestProject.Services
             colorNames.Add(CreateColorName(Color.Gray));
             colorNames.Add(CreateColorName(Color.Green));
             colorNames.Add(CreateColorName(Color.Blue));
+            colorNames.Add(CreateColorName(Color.WhiteSmoke));
+            colorNames.Add(CreateColorName(Color.Silver));
 
             return colorNames;
         }
@@ -111,7 +116,7 @@ namespace BroadridgeTestProject.Services
         internal ColorName CreateColorName(Color color)
         {
             return new ColorName(color, color.ToString());
-        }
+        }       
 
         //TODO: to generic
         internal PriorityName CreatePriorityName(Priority priority)

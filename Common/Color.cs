@@ -8,6 +8,10 @@
 
         Blue,
 
-        Gray
+        Gray,
+
+        WhiteSmoke,
+
+        Silver
     }
 }
