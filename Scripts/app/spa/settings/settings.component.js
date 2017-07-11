@@ -6,6 +6,20 @@
 
 function settingsController($http, $scope) {
     $scope.loading = true;
+    $scope.loadingColorNames = true;
+    $scope.loadingDateFormates = true;
+
+    $scope.$watch('loadingColorNames', function () {
+        if (!$scope.loadingColorNames && !$scope.loadingDateFormates) {
+            $scope.GetSettings.call();
+        }
+    });
+
+    $scope.$watch('loadingDateFormates', function () {
+        if (!$scope.loadingColorNames && !$scope.loadingDateFormates) {
+            $scope.GetSettings.call();
+        }
+    });
 
     $scope.GetSettings = function () {
         $scope.working = true;
@@ -41,11 +55,9 @@ function settingsController($http, $scope) {
         url: '/BroadridgeTestProject/api/colorName'
     }).then(function (success) {
         $scope.colorNames = success.data;
-        $scope.loading = false;
-
-        $scope.GetSettings.call(); //refactor
+        $scope.loadingColorNames = false;
     }, function (error) {        
-        $scope.loading = true;
+        $scope.loadingColorNames = true;
     });    
 
     $http({
@@ -53,10 +65,8 @@ function settingsController($http, $scope) {
         url: '/BroadridgeTestProject/api/DateFormate'
     }).then(function (success) {
         $scope.dateFormates = success.data;
-        $scope.loading = false;
-
-        $scope.GetSettings.call(); //refactor
+        $scope.loadingDateFormates = false;        
     }, function (error) {        
-        $scope.loading = true;
+        $scope.loadingDateFormates = true;
     });
 }
