@@ -14,11 +14,14 @@ function GetDateFormat(date) {
 }
 
 function taskController($http, $scope, $window, settingService) {
-    $scope.loading = true;    
+    $scope.loading = true;
+
+    $scope.taskUpdated = {};
 
     settingService.getSettings().then(function (data) {
         dateFormat = data.DateFormat;
-        //$scope.taskUpdated.TimeToComplete = Date.now();
+        var date = new Date();
+        $scope.taskUpdated.TimeToComplete = date;
     });
 
     $http({
