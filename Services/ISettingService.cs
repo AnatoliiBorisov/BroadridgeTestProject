@@ -15,5 +15,7 @@ namespace BroadridgeTestProject.Services
         IList<PriorityName> GetPriorities();
 
         int GetTaskBatchSize();
+
+        IEnumerable<DateFormateDto> GetDateFormates();
     }
 }

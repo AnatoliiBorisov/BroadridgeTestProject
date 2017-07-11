@@ -5,9 +5,12 @@
             <label>Date/time format:</label>
         </td>
         <td>
-            <input type="text"
-                   ng-model="settings.DateTimeFormat"
-                   ng-disabled="loading">
+            <select id="selectDateFormates"
+                    ng-model="settings.DateFormateId"
+                    ng-options="x.DateFormatID as (x.DateTimeFormate) for x in dateFormates"
+                    ng-disabled="loading">
+                <option></option>
+            </select>
         </td>
     </tr>
     <tr>

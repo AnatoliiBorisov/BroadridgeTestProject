@@ -43,8 +43,20 @@ function settingsController($http, $scope) {
         $scope.colorNames = success.data;
         $scope.loading = false;
 
-        $scope.GetSettings.call();
+        $scope.GetSettings.call(); //refactor
     }, function (error) {        
         $scope.loading = true;
     });    
+
+    $http({
+        method: 'GET',
+        url: '/BroadridgeTestProject/api/DateFormate'
+    }).then(function (success) {
+        $scope.dateFormates = success.data;
+        $scope.loading = false;
+
+        $scope.GetSettings.call(); //refactor
+    }, function (error) {        
+        $scope.loading = true;
+    });
 }

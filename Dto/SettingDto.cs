@@ -4,6 +4,8 @@ namespace BroadridgeTestProject.Dto
 {
     public class SettingDto
     {
+        public int DateFormateId { get; set; }
+
         public string DateTimeFormat { get; set; }
 
         public string DateFormat { get; set; }

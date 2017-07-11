@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BroadridgeTestProject.Common;
 using BroadridgeTestProject.Dto;
 using BroadridgeTestProject.Providers;
@@ -17,7 +18,7 @@ namespace BroadridgeTestProject.Services
 
         private const Color ColorDefault = Color.Gray;
 
-        private const string DateTimeFormatDefault = "dd.MM.yyyy HH:mm:ss";
+        private const int DateTimeFormatDefault = 1;
 
         public SettingService(ISerializationService serializationService,
                               IApplicationCasheService applicationCasheService,
@@ -43,16 +44,19 @@ namespace BroadridgeTestProject.Services
                     ? _serializationService.DeserializeObject<Color>(settings[SettingNames.AltRowsColor])
                     : ColorDefault;
 
-                var dateTimeFormat = settings.ContainsKey(SettingNames.DateTimeFormat)
-                    ? _serializationService.DeserializeObject<string>(settings[SettingNames.DateTimeFormat])
+                var dateFormateId = settings.ContainsKey(SettingNames.DateTimeFormat)
+                    ? _serializationService.DeserializeObject<int>(settings[SettingNames.DateTimeFormat])
                     : DateTimeFormatDefault;
+
+                var dateFormate = _settingProvider.GetDateFormat(dateFormateId);
 
                 settingDto = new SettingDto
                 {
+                    DateFormateId = dateFormateId,
                     AltRowsColor = altRowsColor,
                     AltRowsColorName = altRowsColor.ToString(),
-                    DateTimeFormat = dateTimeFormat,
-                    DateFormat = "DD-MM-YYYY" //TODO: need to calclulate from DateTimeFormat
+                    DateTimeFormat = dateFormate.DateTimeFormat,
+                    DateFormat = dateFormate.ShortDateFormat.ToUpperInvariant()
                 };
 
                 _applicationCasheService.AddValue(ApplicationCasheNames.SettingDto, settingDto);
@@ -70,7 +74,7 @@ namespace BroadridgeTestProject.Services
             }
 
             var colorSerialized = _serializationService.SerializeObject(settingDto.AltRowsColor);
-            var dateTimeFormatSerialized = _serializationService.SerializeObject(settingDto.DateTimeFormat);
+            var dateTimeFormatSerialized = _serializationService.SerializeObject(settingDto.DateFormateId);
 
             var settingNames = new Dictionary<SettingNames, string>(2);
 
@@ -111,6 +115,17 @@ namespace BroadridgeTestProject.Services
         {
             //TODO: Move to user settings
             return 8;
+        }
+
+        public IEnumerable<DateFormateDto> GetDateFormates()
+        {
+            return _settingProvider.GetDateFormates()
+                                   .Select(x => new DateFormateDto
+                                                    {
+                                                        DateFormatID = x.DateFormatID,
+                                                        DateTimeFormate = x.DateTimeFormat
+                                                    })
+                                   .ToList();
         }
 
         //TODO: to generic

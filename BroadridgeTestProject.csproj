@@ -192,6 +192,7 @@
     <Compile Include="Common\SettingNames.cs" />
     <Compile Include="Common\TaskListType.cs" />
     <Compile Include="Controllers\ColorNameController.cs" />
+    <Compile Include="Controllers\DateFormateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PriorityController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="DAL\BroadridgeContext.cs" />
     <Compile Include="DAL\BroadridgeInitializer.cs" />
+    <Compile Include="Dto\DateFormateDto.cs" />
     <Compile Include="Dto\SettingDto.cs" />
     <Compile Include="Dto\TaskChartDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
@@ -209,6 +211,7 @@
     <Compile Include="IoCContainer.cs" />
     <Compile Include="Common\Color.cs" />
     <Compile Include="Common\Priority.cs" />
+    <Compile Include="Models\DateFormat.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

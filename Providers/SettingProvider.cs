@@ -38,5 +38,21 @@ namespace BroadridgeTestProject.Providers
                 return context.Settings.ToDictionary(x => x.Name, x => x.Value);
             }
         }
+
+        public DateFormat GetDateFormat(int dateFormatId)
+        {
+            using (var context = new BroadridgeContext())
+            {
+                return context.DateFormats.FirstOrDefault(x => x.DateFormatID == dateFormatId);
+            }
+        }
+
+        public IEnumerable<DateFormat> GetDateFormates()
+        {
+            using (var context = new BroadridgeContext())
+            {
+                return context.DateFormats.ToList();
+            }
+        }
     }
 }

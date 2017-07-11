@@ -11,6 +11,9 @@ namespace BroadridgeTestProject.DAL
         }
 
         public DbSet<Task> Tasks { get; set; }
+
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<DateFormat> DateFormats { get; set; }
     }
 }
