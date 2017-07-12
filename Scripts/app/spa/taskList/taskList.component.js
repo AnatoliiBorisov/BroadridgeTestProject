@@ -1,5 +1,5 @@
 ﻿angular.
-    module('taskListModule', ['ui.bootstrap', 'shared.services']).
+    module('taskListModule').
     component('taskList', {
         templateUrl: '/BroadridgeTestProject/Scripts/app/spa/taskList/taskList.template.html',
         controller: taskListController

@@ -1,1 +1,1 @@
-﻿angular.module('taskListModule', []);
+﻿angular.module('taskListModule', ['ui.bootstrap', 'shared.services']);

@@ -1,5 +1,5 @@
 ﻿angular.
-    module('taskChartModule', ['ui.bootstrap', 'ui.chart'])
+    module('taskChartModule')
     .component('taskChart', {
         templateUrl: '/BroadridgeTestProject/Scripts/app/spa/taskChart/taskChart.template.html',
         controller: taskChartController

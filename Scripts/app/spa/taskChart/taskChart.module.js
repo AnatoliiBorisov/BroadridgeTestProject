@@ -1,1 +1,1 @@
-﻿angular.module('taskChartModule', []);
+﻿angular.module('taskChartModule', ['ui.bootstrap', 'ui.chart']);
