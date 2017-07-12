@@ -190,6 +190,7 @@
     <Compile Include="Common\Consts.cs" />
     <Compile Include="Common\PriorityName.cs" />
     <Compile Include="Common\SettingNames.cs" />
+    <Compile Include="Common\Sort.cs" />
     <Compile Include="Common\TaskListType.cs" />
     <Compile Include="Controllers\ColorNameController.cs" />
     <Compile Include="Controllers\DateFormateController.cs" />

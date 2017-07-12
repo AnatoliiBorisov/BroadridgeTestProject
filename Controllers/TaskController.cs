@@ -83,7 +83,7 @@ namespace BroadridgeTestProject.Controllers
         }
 
         //TODO: need to add sorting        
-        public IEnumerable<TaskDto> Get(TaskListType taskListType, int? pageNo)
+        public IEnumerable<TaskDto> Get(TaskListType taskListType, int? pageNo, Sort? sort = null, string sortColumn = null)
         {
             if (pageNo == null)
             {

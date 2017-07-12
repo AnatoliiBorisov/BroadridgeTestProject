@@ -9,6 +9,10 @@ function taskListController($http, $scope, $window, $timeout, priorityService, s
     $scope.loading = true;
     $scope.isPrioritiesLoaded = false;
     $scope.isSettingsLoaded = false;
+
+    //sorting
+    $scope.sort = null;
+    $scope.sortColumn = null;
     
     //Pagination. Start.
     $scope.currentPage = 1;
@@ -79,7 +83,9 @@ function taskListController($http, $scope, $window, $timeout, priorityService, s
             url: '/BroadridgeTestProject/api/task/get',
             params: {
                 taskListType: taskListType,
-                pageNo: $scope.currentPage
+                pageNo: $scope.currentPage,
+                sort: $scope.sort,
+                sortColumn: $scope.sortColumn
             }
         }).then(function (success) {
             var taskList = [];
@@ -245,14 +251,17 @@ function taskListController($http, $scope, $window, $timeout, priorityService, s
         $window.CleanSortClasse(sortDescentClass, elementId);
         
         var element = document.getElementById(elementId);
-        var sort = undefined;
         if (element.className != sortAscentClass) {
             element.className = sortAscentClass;
-            sort = "Asc";
+            $scope.sort = "Asc";
         } else {
             element.className = sortDescentClass;
-            sort = "Desc";
+            $scope.sort = "Desc";
         }
+
+        $scope.sortColumn = column;
+
+        $scope.getTaskList($scope.selectedTaskListType).call();
     }
     //Sort Table. Finish
 
