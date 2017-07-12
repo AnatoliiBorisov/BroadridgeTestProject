@@ -21,11 +21,11 @@
                 <table st-table="rowCollection" class="table table-striped">
                     <thead>
                     <tr>
-                        <th st-sort="Name">Name</th>
-                        <th st-sort="Priority">Priority</th>
-                        <th st-sort="TimeCreate">Added</th>
-                        <th st-sort="TimeToComplete">Time to complete</th>
-                        <th st-sort="balance">Actions</th>
+                        <th id="tableHeaderName" ng-click="sortTable('Name', 'tableHeaderName')">Name</th>
+                        <th id="tableHeaderPriority" ng-click="sortTable('Priority','tableHeaderPriority')">Priority</th>
+                        <th id="tableHeaderTimeCreate" ng-click="sortTable('TimeCreate','tableHeaderTimeCreate')">Added</th>
+                        <th id="tableHeaderTimeToComplete" ng-click="sortTable('TimeToComplete', 'tableHeaderTimeToComplete')">Time to complete</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>

@@ -236,6 +236,26 @@ function taskListController($http, $scope, $window, $timeout, priorityService, s
         });
     }
 
+    //Sort Table. Start
+    $scope.sortTable = function (column, elementId) {
+        var sortAscentClass = "st-sort-ascent";
+        var sortDescentClass = "st-sort-descent";
+
+        $window.CleanSortClasse(sortAscentClass, elementId);
+        $window.CleanSortClasse(sortDescentClass, elementId);
+        
+        var element = document.getElementById(elementId);
+        var sort = undefined;
+        if (element.className != sortAscentClass) {
+            element.className = sortAscentClass;
+            sort = "Asc";
+        } else {
+            element.className = sortDescentClass;
+            sort = "Desc";
+        }
+    }
+    //Sort Table. Finish
+
     $scope.getTaskList($scope.selectedTaskListType);
 
     //Timer start
@@ -357,3 +377,14 @@ function UpdateTaskFieds(task, taskFromServer, dateNow, dateFormat, priorities) 
         task.Status = 'Active';
     }
 }
+
+function CleanSortClasse(sortClass, elementId) {
+    var ascentElements = document.getElementsByClassName(sortClass);
+    angular.forEach(ascentElements, function (value, key) {
+        if (value.id != elementId) {
+            value.className = "";
+        }
+    });
+}
+
+  
