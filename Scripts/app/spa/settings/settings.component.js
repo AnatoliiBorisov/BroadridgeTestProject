@@ -8,6 +8,9 @@ function settingsController($http, $scope) {
     $scope.loading = true;
     $scope.loadingColorNames = true;
     $scope.loadingDateFormates = true;
+    
+    $scope.minPageSize = 1;
+    $scope.maxPageSize = 40;
 
     $scope.$watch('loadingColorNames', function () {
         if (!$scope.loadingColorNames && !$scope.loadingDateFormates) {

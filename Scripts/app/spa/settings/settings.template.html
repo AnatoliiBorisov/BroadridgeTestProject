@@ -32,7 +32,7 @@
             <label>Page size:</label>
         </td>
         <td>
-            <input ng-model="settings.PageSize"/>
+            <input type="number" min="{{minPageSize}}" max="{{maxPageSize}}" ng-model="settings.PageSize" ng-disabled="loading"/>
         </td>
     </tr>
 
