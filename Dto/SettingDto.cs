@@ -13,5 +13,7 @@ namespace BroadridgeTestProject.Dto
         public Color AltRowsColor { get; set; }
 
         public string AltRowsColorName { get; set; }
+
+        public int PageSize { get; set; }
     }
 }

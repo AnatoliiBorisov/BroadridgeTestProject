@@ -34,6 +34,12 @@ namespace BroadridgeTestProject.DAL
 
             context.Settings.Add(altRowsColorFormat);
 
+            var pageSize = new Setting();
+            pageSize.Name = SettingNames.PageSize;
+            pageSize.Value = settingService.SerializeObject(8);
+
+            context.Settings.Add(pageSize);
+
             context.SaveChanges();
         }
     }

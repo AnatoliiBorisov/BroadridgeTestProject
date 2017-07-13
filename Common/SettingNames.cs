@@ -4,6 +4,8 @@
     {
         DateTimeFormat,
 
-        AltRowsColor
+        AltRowsColor,
+
+        PageSize
     }
 }

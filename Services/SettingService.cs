@@ -20,6 +20,8 @@ namespace BroadridgeTestProject.Services
 
         private const int DateTimeFormatDefault = 1;
 
+        private const int PageSizeDefault = 8;
+
         public SettingService(ISerializationService serializationService,
                               IApplicationCasheService applicationCasheService,
                               ISettingProvider settingProvider)
@@ -48,6 +50,10 @@ namespace BroadridgeTestProject.Services
                     ? _serializationService.DeserializeObject<int>(settings[SettingNames.DateTimeFormat])
                     : DateTimeFormatDefault;
 
+                var pageSize = settings.ContainsKey(SettingNames.PageSize)
+                    ? _serializationService.DeserializeObject<int>(settings[SettingNames.PageSize])
+                    : PageSizeDefault;
+
                 var dateFormate = _settingProvider.GetDateFormat(dateFormateId);
 
                 settingDto = new SettingDto
@@ -56,7 +62,8 @@ namespace BroadridgeTestProject.Services
                     AltRowsColor = altRowsColor,
                     AltRowsColorName = altRowsColor.ToString(),
                     DateTimeFormat = dateFormate.DateTimeFormat,
-                    DateFormat = dateFormate.ShortDateFormat.ToUpperInvariant()
+                    DateFormat = dateFormate.ShortDateFormat.ToUpperInvariant(),
+                    PageSize = pageSize
                 };
 
                 _applicationCasheService.AddValue(ApplicationCasheNames.SettingDto, settingDto);
@@ -75,11 +82,13 @@ namespace BroadridgeTestProject.Services
 
             var colorSerialized = _serializationService.SerializeObject(settingDto.AltRowsColor);
             var dateTimeFormatSerialized = _serializationService.SerializeObject(settingDto.DateFormateId);
+            var pageSizeSerialized = _serializationService.SerializeObject(settingDto.PageSize);
 
             var settingNames = new Dictionary<SettingNames, string>(2);
 
             settingNames.Add(SettingNames.DateTimeFormat, dateTimeFormatSerialized);
             settingNames.Add(SettingNames.AltRowsColor, colorSerialized);
+            settingNames.Add(SettingNames.PageSize, pageSizeSerialized);
 
             _settingProvider.SaveSettings(settingNames);
 
@@ -113,8 +122,7 @@ namespace BroadridgeTestProject.Services
 
         public int GetTaskBatchSize()
         {
-            //TODO: Move to user settings
-            return 8;
+            return GetSettingDto().PageSize;
         }
 
         public IEnumerable<DateFormateDto> GetDateFormates()
