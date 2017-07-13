@@ -192,6 +192,7 @@
     <Compile Include="Common\SettingNames.cs" />
     <Compile Include="Common\Sort.cs" />
     <Compile Include="Common\TaskListType.cs" />
+    <Compile Include="Common\TaskStatus.cs" />
     <Compile Include="Controllers\ColorNameController.cs" />
     <Compile Include="Controllers\DateFormateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

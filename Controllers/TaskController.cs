@@ -82,7 +82,6 @@ namespace BroadridgeTestProject.Controllers
             return _taskService.GetTask(taskId);
         }
 
-        //TODO: need to add sorting        
         public IEnumerable<TaskDto> Get(TaskListType taskListType, int? pageNo, Sort? sort = null, string sortColumn = null)
         {
             if (pageNo == null)
@@ -90,7 +89,7 @@ namespace BroadridgeTestProject.Controllers
                 pageNo = 1;
             }
 
-            return _taskService.GetTaskList(taskListType, pageNo.Value);
+            return _taskService.GetTaskList(taskListType, pageNo.Value, sort, sortColumn);
         }
 
         [Route("api/taskListSettigs")]

@@ -14,12 +14,23 @@ namespace BroadridgeTestProject.Services
 
         private readonly ISettingService _settingService;
 
+        private readonly Dictionary<string, Func<Task, object>> _selectors;
+
         public TaskService(ITaskProvider taskProvider,
                            ISettingService settingService)
         {
             _taskProvider = taskProvider;
 
             _settingService = settingService;
+
+            _selectors = new Dictionary<string, Func<Task, object>>
+            {
+                {"Name", FuncTaskNameKeySelector},
+                {"Priority", FuncTaskPriorityKeySelector },
+                {"TimeCreate", FuncTaskTimeCreateKeySelector  },
+                {"TimeToComplete", FuncTaskTimeToCompleteKeySelector },
+                {"Status", FuncTaskStatusKeySelector }
+            };
         }
 
         public TaskDto GetTask(int taskId)
@@ -34,13 +45,23 @@ namespace BroadridgeTestProject.Services
             var task = ConvertFromDto(taskDto);
 
             _taskProvider.SaveTask(task);
-        }
+        }        
 
-        public IList<TaskDto> GetTaskList(TaskListType taskListType, int pageNo)
+        public IList<TaskDto> GetTaskList(TaskListType taskListType, int pageNo, Sort? sort = null, string sortColumn = null)
         {
             var taskBatchSize = _settingService.GetTaskBatchSize();
 
             IEnumerable<Task> taskList = _taskProvider.GetTaskList(taskListType);
+
+            Func<Task, object> funcTaskKeySelector = null;
+            if (sort != null 
+                && !string.IsNullOrEmpty(sortColumn)
+                && _selectors.TryGetValue(sortColumn, out funcTaskKeySelector))
+            {
+                taskList = sort == Sort.Asc ? taskList.OrderBy(funcTaskKeySelector) 
+                                            : taskList.OrderByDescending(funcTaskKeySelector);
+            }
+
             if (pageNo != Consts.AllTasks)
             {
                 taskList = taskList.Skip((pageNo - 1) * taskBatchSize).Take(taskBatchSize);
@@ -119,5 +140,32 @@ namespace BroadridgeTestProject.Services
                 TimeComplete = taskDto.TimeToComplete
             };
         }
+
+        #region selectors for sort table
+        private object FuncTaskNameKeySelector(Task task)
+        {
+            return task.Name;
+        }
+
+        private object FuncTaskPriorityKeySelector(Task task)
+        {
+            return task.Priority;
+        }
+
+        private object FuncTaskTimeCreateKeySelector(Task task)
+        {
+            return task.TimeCreate;
+        }
+
+        private object FuncTaskTimeToCompleteKeySelector(Task task)
+        {
+            return task.TimeComplete;
+        }
+
+        private object FuncTaskStatusKeySelector(Task task)
+        {
+            return task.TimeComplete > DateTime.Now ? TaskStatus.Active : TaskStatus.Complete;
+        }
+        #endregion selectors for sort table
     }
 }

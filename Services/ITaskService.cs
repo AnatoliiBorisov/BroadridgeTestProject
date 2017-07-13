@@ -10,7 +10,7 @@ namespace BroadridgeTestProject.Services
 
         void SaveTask(TaskDto taskDto);
 
-        IList<TaskDto> GetTaskList(TaskListType taskListType, int pageNo);
+        IList<TaskDto> GetTaskList(TaskListType taskListType, int pageNo, Sort? sort = null, string sortColumn = null);
 
         void CompleteTask(int taskId);
 
