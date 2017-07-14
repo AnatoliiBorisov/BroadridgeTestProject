@@ -291,6 +291,7 @@
     <Content Include="Scripts\app\spa\settings\settings.template.html" />
     <Content Include="Scripts\app\spa\shared\ModalConfirmation.html" />
     <Content Include="Scripts\app\spa\spa-controller.js" />
+    <Content Include="Scripts\app\spa\taskChart\task-chart-module-service.js" />
     <Content Include="Scripts\app\spa\taskChart\taskChart.component.js" />
     <Content Include="Scripts\app\spa\taskChart\taskChart.module.js" />
     <Content Include="Scripts\app\spa\taskChart\taskChart.template.html" />

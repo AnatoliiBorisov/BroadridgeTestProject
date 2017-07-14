@@ -5,12 +5,8 @@
         controller: taskChartController
     });
 
-function taskChartController($http, $scope, $timeout, chartService) {
-    $scope.taskChartData = [[[]]];
-
-    $scope.$watch('taskChartData', function () {
-        chartService.drawChart('chartDivId', 'Tasks by type', $scope.taskChartData);
-    });
+function taskChartController($http, $scope, $timeout, chartService, taskChartModuleService) {
+    $scope.taskChartData = [[[]]];    
     
     $http({
         method: 'GET',
@@ -28,9 +24,9 @@ function taskChartController($http, $scope, $timeout, chartService) {
 
             taskChartValues.push(taskChartValue);
         }        
-
-        //TODO: need find proper solution of initialization chart
+        
         $scope.taskChartData = [taskChartValues];
+        taskChartModuleService.setChartData($scope.taskChartData);
     }, function (error) {
         
     });
