@@ -13,12 +13,7 @@ namespace BroadridgeTestProject.Controllers
         public ActionResult Index()
         {
             return View();
-        }
-
-        public ActionResult Spa()
-        {
-            return View();
-        }
+        }        
 
         public ActionResult About()
         {
