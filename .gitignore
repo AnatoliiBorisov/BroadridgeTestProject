@@ -1,3 +1,10 @@
 bin/
 obj/
 
+bin/BroadridgeTestProject.dll
+bin/BroadridgeTestProject.dll.config
+bin/BroadridgeTestProject.pdb
+obj/Debug/BroadridgeTestProject.csproj.FileListAbsolute.txt
+obj/Debug/BroadridgeTestProject.dll
+obj/Debug/BroadridgeTestProject.pdb
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
