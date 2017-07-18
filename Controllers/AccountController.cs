@@ -46,12 +46,24 @@ namespace BroadridgeTestProject.Controllers
                                        }
                                        , ident);
 
+                    if (string.IsNullOrEmpty(returnUrl))
+                    {
+                        returnUrl = "/BroadridgeTestProject/"; //;Request.Url.Content("~")
+                    }
+
                     return Redirect(returnUrl);
                 }
             }
 
             ViewBag.returnUrl = returnUrl;
             return View(details);
+        }
+
+        public ActionResult Logout()
+        {
+            AuthManager.SignOut();
+
+            return RedirectToAction("Login");
         }
 
         private IAuthenticationManager AuthManager

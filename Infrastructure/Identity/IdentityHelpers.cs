@@ -12,5 +12,10 @@ namespace BroadridgeTestProject.Infrastructure.Identity
 
             return new MvcHtmlString(mgr.FindByIdAsync(id).Result.UserName);
         }
+
+        public static MvcHtmlString GetCurrentUserName(this HtmlHelper html)
+        {
+            return new MvcHtmlString(HttpContext.Current.User.Identity.Name);           
+        }
     }
 }
