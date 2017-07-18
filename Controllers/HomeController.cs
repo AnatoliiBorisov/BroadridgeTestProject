@@ -10,7 +10,7 @@ namespace BroadridgeTestProject.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize]
+        [Authorize(Roles = "Users")]
         public ActionResult Index()
         {
             return View();
