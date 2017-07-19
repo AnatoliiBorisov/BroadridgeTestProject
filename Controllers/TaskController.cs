@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using BroadridgeTestProject.Common;
-//using BroadridgeTestProject.Binders;
 using BroadridgeTestProject.Dto;
 using BroadridgeTestProject.Services;
 using BroadridgeTestProject.Wrappers;
 
 namespace BroadridgeTestProject.Controllers
 {
+    [Authorize]
     public class TaskController : ApiController
     {
         private readonly ITaskService _taskService;

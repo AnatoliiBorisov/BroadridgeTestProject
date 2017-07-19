@@ -5,6 +5,7 @@ using BroadridgeTestProject.Services;
 
 namespace BroadridgeTestProject.Controllers
 {
+    [Authorize]
     public class TaskChartController : ApiController
     {
         private readonly ITaskService _taskService;

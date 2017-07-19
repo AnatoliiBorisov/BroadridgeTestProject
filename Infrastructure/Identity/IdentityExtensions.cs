@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace BroadridgeTestProject.Infrastructure.Identity
 {
-    public static class IdentityHelpers
+    public static class IdentityExtensions
     {
         public static MvcHtmlString GetUserName(this HtmlHelper html, string id)
         {

@@ -9,7 +9,8 @@ using BroadridgeTestProject.Dto;
 using BroadridgeTestProject.Services;
 
 namespace BroadridgeTestProject.Controllers
-{   
+{
+    [Authorize]
     public class SettingController : ApiController
     {
         private readonly ISettingService _settingService;

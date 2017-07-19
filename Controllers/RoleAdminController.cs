@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace BroadridgeTestProject.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class RoleAdminController : Controller
     {
         // GET: RoleAdmin

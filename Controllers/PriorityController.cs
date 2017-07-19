@@ -7,6 +7,7 @@ using BroadridgeTestProject.Services;
 
 namespace BroadridgeTestProject.Controllers
 {
+    [Authorize]
     public class PriorityController : ApiController
     {
         private readonly ISettingService _settingService;

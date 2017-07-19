@@ -8,9 +8,9 @@ using BroadridgeTestProject.Services;
 
 namespace BroadridgeTestProject.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        [Authorize(Roles = "Users")]
         public ActionResult Index()
         {
             return View();

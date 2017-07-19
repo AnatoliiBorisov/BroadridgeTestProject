@@ -254,7 +254,7 @@
     </Compile>
     <Compile Include="Infrastructure\Identity\AppRoleManager.cs" />
     <Compile Include="Infrastructure\Identity\AppUserManager.cs" />
-    <Compile Include="Infrastructure\Identity\IdentityHelpers.cs" />
+    <Compile Include="Infrastructure\Identity\IdentityExtensions.cs" />
     <Compile Include="IoCContainer.cs" />
     <Compile Include="Common\Color.cs" />
     <Compile Include="Common\Priority.cs" />
