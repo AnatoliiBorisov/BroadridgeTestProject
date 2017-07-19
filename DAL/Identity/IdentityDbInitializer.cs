@@ -19,6 +19,7 @@ namespace BroadridgeTestProject.DAL.Identity
         {
             const string roleAdmin = "Administrators";
             const string roleUser = "Users";
+            const string roleEmployees = "Employees";
 
             const string userAdmin = "Admin";
             const string passwordAdmin = "P@ssw0rd";
@@ -36,23 +37,32 @@ namespace BroadridgeTestProject.DAL.Identity
             const string passworAlice = "P@ssw0rd";
             const string emailAlice = "alice@example.com";
 
+            const string userBob = "Bob";
+            const string passworBob = "P@ssw0rd";
+            const string emailBob = "bob@example.com";
+
             var userMgr = new AppUserManager(new UserStore<AppUser>(context));
             var roleMgr = new AppRoleManager(new RoleStore<AppRole>(context));            
 
             RoleCreate(roleMgr, roleAdmin);
             RoleCreate(roleMgr, roleUser);
+            RoleCreate(roleMgr, roleEmployees);
 
             var admin = UserCreate(userMgr, new UserDto(userAdmin, passwordAdmin, emailAdmin));
 
             var joe = UserCreate(userMgr, new UserDto(userJoe, passwordJoe, emailJoe));
             var steve = UserCreate(userMgr, new UserDto(userSteve, passworSteve, emailSteve));
             var alice = UserCreate(userMgr, new UserDto(userAlice, passworAlice, emailAlice));
+            var bob = UserCreate(userMgr, new UserDto(userBob, passworBob, emailBob));
 
             AddUserToRole(userMgr, admin, roleAdmin);
 
             AddUserToRole(userMgr, joe, roleUser);
             AddUserToRole(userMgr, steve, roleUser);
             AddUserToRole(userMgr, alice, roleUser);
+
+            AddUserToRole(userMgr, alice, roleEmployees);
+            AddUserToRole(userMgr, bob, roleEmployees);
         }
 
         private void RoleCreate(AppRoleManager roleManager, string roleName)
