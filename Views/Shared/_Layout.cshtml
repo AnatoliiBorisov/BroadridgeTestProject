@@ -32,8 +32,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li><a href="#">Current user: @Html.GetCurrentUserName()</a></li>
-                    <li><a href="#">Current user roles: @Html.GetCurrentUserRoleName()</a></li>
+                    <li><a href="#">User: @Html.GetCurrentUserName()</a></li>
+                    <li><a href="#">Roles: @Html.GetCurrentUserRoleName()</a></li>
                     
                     @if (IdentityExtensions.IsUserInRole("Administrators"))
                     {
