@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using BroadridgeTestProject.Infrastructure.Identity;
+using BroadridgeTestProject.Models;
 using BroadridgeTestProject.Models.Identity;
 using BroadridgeTestProject.Models.Web;
 using Microsoft.AspNet.Identity;
@@ -88,12 +89,14 @@ namespace BroadridgeTestProject.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(string id, string email, string password)
+        public async Task<ActionResult> Edit(string id, string email, string password, City? city = null)
         {
             AppUser user = await UserManager.FindByIdAsync(id);
             if (user != null)
             {
                 user.Email = email;
+                user.City = city;
+
                 var validEmail = await UserManager.UserValidator.ValidateAsync(user);
                 if (!validEmail.Succeeded)
                 {
@@ -106,8 +109,7 @@ namespace BroadridgeTestProject.Controllers
                     validPass = await UserManager.PasswordValidator.ValidateAsync(password);
                     if (validPass.Succeeded)
                     {
-                        user.PasswordHash =
-                        UserManager.PasswordHasher.HashPassword(password);
+                        user.PasswordHash = UserManager.PasswordHasher.HashPassword(password);
                     }
                     else
                     {

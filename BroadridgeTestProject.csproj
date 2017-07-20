@@ -258,6 +258,12 @@
     <Compile Include="IoCContainer.cs" />
     <Compile Include="Common\Color.cs" />
     <Compile Include="Common\Priority.cs" />
+    <Compile Include="Migrations\201707200709045_CityProperty.cs" />
+    <Compile Include="Migrations\201707200709045_CityProperty.Designer.cs">
+      <DependentUpon>201707200709045_CityProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\City.cs" />
     <Compile Include="Models\DateFormat.cs" />
     <Compile Include="Models\Identity\AppRole.cs" />
     <Compile Include="Models\Identity\AppUser.cs" />
@@ -533,6 +539,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201707200709045_CityProperty.resx">
+      <DependentUpon>201707200709045_CityProperty.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

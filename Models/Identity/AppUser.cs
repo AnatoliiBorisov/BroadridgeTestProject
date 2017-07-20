@@ -4,6 +4,6 @@ namespace BroadridgeTestProject.Models.Identity
 {
     public class AppUser : IdentityUser
     {
-        // additional properties will go here
+        public City? City { get; set; }
     }
 }
