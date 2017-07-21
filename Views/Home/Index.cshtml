@@ -43,33 +43,7 @@
     </div>
 </div>
 
-@section scripts {    
-    <script src="~/Scripts/angular/angular.js"></script>
-    
-    <script src="~/Scripts/angular-animate/angular-animate.js"></script>
-    <script src="~/Scripts/angular-aria/angular-aria.js"></script>
-    <script src="~/Scripts/angular-material/angular-material.js"></script>
-
-    <script src="~/Scripts/moment.min.js"></script>
-
-    <script src="~/Scripts/smart-table.js"></script>
-
-    <link href="~/Content/angular-material.css" rel="stylesheet"/>
-
-    <script src="~/Scripts/angular-ui/ui-bootstrap.js"></script>
-    <link href="~/Content/bootstrap.css" rel="stylesheet"/>
-    <link href="~/Content/ui-bootstrap-csp.css" rel="stylesheet"/>
-
-    
-    @Scripts.Render("~/Scripts/jquery.jqplot/jquery.jqplot.js")    
-    @Scripts.Render("~/Scripts/jquery.jqplot/plugins/jqplot.pieRenderer.js")
-    @Scripts.Render("~/Scripts/jquery.jqplot/plugins/jqplot.enhancedPieLegendRenderer.js")
-    @Scripts.Render("~/Scripts/jquery.jqplot/plugins/jqplot.enhancedLegendRenderer.js")
-    <link href="~/Scripts/jquery.jqplot/jquery.jqplot.css" rel="stylesheet"/>
-
-    @Scripts.Render("~/Scripts/angular-ui/ui-chart.js")
-
-
+@section scripts {        
     <!--Shred services-->
     @Scripts.Render("~/Scripts/app/spa/services/shared-services.module.js")
     @Scripts.Render("~/Scripts/app/spa/services/priority-service.js")

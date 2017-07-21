@@ -6,7 +6,7 @@
 
 <h2>Create Role</h2>
 @Html.ValidationSummary(false)
-@using (Html.BeginForm())
+@using (Html.BeginForm("RoleCreate", "Admin"))
 {
     <div class="form-group">
         <label>Name</label>

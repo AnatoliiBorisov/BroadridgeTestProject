@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -19,16 +20,24 @@ namespace BroadridgeTestProject.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View(UserManager.Users);
+            var adminIndexModel = new AdminIndexModel
+            {
+                Roles = RoleManager.Roles,
+                Users = UserManager.Users
+            };
+
+            return View(adminIndexModel);
         }
 
-        public ActionResult Create()
+        #region Users
+
+        public ActionResult UserCreate()
         {
-            return View();
+            return View("User/Create");
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(CreateModel model)
+        public async Task<ActionResult> UserCreate(CreateModel model)
         {
             if (ModelState.IsValid)
             {
@@ -50,11 +59,11 @@ namespace BroadridgeTestProject.Controllers
                 }
             }
 
-            return View(model);
+            return View("User/Create", model);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> UserDelete(string id)
         {
             AppUser user = await UserManager.FindByIdAsync(id);
             if (user != null)
@@ -75,12 +84,12 @@ namespace BroadridgeTestProject.Controllers
             }
         }
 
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> UserEdit(string id)
         {
             AppUser user = await UserManager.FindByIdAsync(id);
             if (user != null)
             {
-                return View(user);
+                return View("User/Edit", user);
             }
             else
             {
@@ -89,7 +98,7 @@ namespace BroadridgeTestProject.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(string id, string email, string password, City? city = null)
+        public async Task<ActionResult> UserEdit(string id, string email, string password, City? city = null)
         {
             AppUser user = await UserManager.FindByIdAsync(id);
             if (user != null)
@@ -137,12 +146,115 @@ namespace BroadridgeTestProject.Controllers
             }
             return View(user);
         }
+        #endregion Users
+
+        #region Roles
+
+        public ActionResult RoleCreate()
+        {
+            return View("Role/Create");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> RoleCreate([Required]string name)
+        {
+            if (ModelState.IsValid)
+            {
+                IdentityResult result = await RoleManager.CreateAsync(new AppRole(name));
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
+            }
+            return View("Role/Create", name);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> RoleDelete(string id)
+        {
+            AppRole role = await RoleManager.FindByIdAsync(id);
+            if (role != null)
+            {
+                IdentityResult result = await RoleManager.DeleteAsync(role);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View("Error", result.Errors);
+                }
+            }
+            else
+            {
+                return View("Error", new string[] { "Role Not Found" });
+            }
+        }
+
+        public async Task<ActionResult> RoleEdit(string id)
+        {
+            var role = await RoleManager.FindByIdAsync(id);
+            var memberIDs = role.Users.Select(x => x.UserId).ToArray();
+
+            var members = UserManager.Users.Where(x => memberIDs.Any(y => y == x.Id));
+            var nonMembers = UserManager.Users.Except(members);
+
+            var roleEditModel = new RoleEditModel
+            {
+                Role = role,
+                Members = members,
+                NonMembers = nonMembers
+            };
+
+            return View("Role/Edit", roleEditModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> RoleEdit(RoleModificationModel model)
+        {
+            IdentityResult result;
+            if (ModelState.IsValid)
+            {
+                foreach (string userId in model.IdsToAdd ?? new string[] { })
+                {
+                    result = await UserManager.AddToRoleAsync(userId, model.RoleName);
+                    if (!result.Succeeded)
+                    {
+                        return View("Error", result.Errors);
+                    }
+                }
+                foreach (string userId in model.IdsToDelete ?? new string[] { })
+                {
+                    result = await UserManager.RemoveFromRoleAsync(userId,
+                    model.RoleName);
+                    if (!result.Succeeded)
+                    {
+                        return View("Error", result.Errors);
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+            return View("Error", new string[] { "Role Not Found" });
+        }
+        #endregion Roles
 
         private AppUserManager UserManager
         {
             get
             {
                 return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+        }
+
+        private AppRoleManager RoleManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppRoleManager>();
             }
         }
 

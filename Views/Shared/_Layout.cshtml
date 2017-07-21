@@ -8,6 +8,34 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script src="~/Scripts/angular/angular.js"></script>
+
+    <script src="~/Scripts/angular-animate/angular-animate.js"></script>
+    <script src="~/Scripts/angular-aria/angular-aria.js"></script>
+    <script src="~/Scripts/angular-material/angular-material.js"></script>
+
+    <script src="~/Scripts/moment.min.js"></script>
+
+    <script src="~/Scripts/smart-table.js"></script>
+
+    <link href="~/Content/angular-material.css" rel="stylesheet" />
+
+    <script src="~/Scripts/angular-ui/ui-bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/ui-bootstrap-csp.css" rel="stylesheet" />
+
+
+    @Scripts.Render("~/Scripts/jquery.jqplot/jquery.jqplot.js")
+    @Scripts.Render("~/Scripts/jquery.jqplot/plugins/jqplot.pieRenderer.js")
+    @Scripts.Render("~/Scripts/jquery.jqplot/plugins/jqplot.enhancedPieLegendRenderer.js")
+    @Scripts.Render("~/Scripts/jquery.jqplot/plugins/jqplot.enhancedLegendRenderer.js")
+    <link href="~/Scripts/jquery.jqplot/jquery.jqplot.css" rel="stylesheet" />
+
+    @Scripts.Render("~/Scripts/angular-ui/ui-chart.js")
+
     @*<script id="template/pagination/pagination.html" type="text/ng-template">
         <li role="menuitem" ng-if="::boundaryLinks" ng-class="{disabled: noPrevious()||ngDisabled}" class="pagination-first"><a href ng-click="selectPage(1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle>{{::getText('first')}}</a></li>
         <li role="menuitem" ng-if="::directionLinks" ng-class="{disabled: noPrevious()||ngDisabled}" class="pagination-prev"><a href ng-click="selectPage(page - 1, $event)" ng-disabled="noPrevious()||ngDisabled" uib-tabindex-toggle>{{::getText('previous')}}</a></li>
@@ -38,7 +66,6 @@
                     @if (IdentityExtensions.IsUserInRole("Administrators"))
                     {
                         <li>@Html.ActionLink("Administration", "Index", "Admin")</li>
-                        <li>@Html.ActionLink("UserRoles", "Index", "RoleAdmin")</li>
                     }
 
                     <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
@@ -53,9 +80,7 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    
+    @RenderSection("scripts", required: false)   
 </body>
 </html>
