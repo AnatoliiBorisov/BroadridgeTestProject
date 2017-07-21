@@ -236,7 +236,6 @@
     <Compile Include="Controllers\DateFormateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PriorityController.cs" />
-    <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\TaskChartController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
